@@ -70,7 +70,9 @@ module AresMUSH
           
           title_display = (title && Channels.show_titles?(c, channel)) ? "#{title} " : ""
           formatted_msg = "#{channel.display_name} #{title_display}#{original_msg}"
-          
+         
+          #Login.find_client(char).emit() if Login.is_online?(char)
+
           Login.emit_if_logged_in(c, formatted_msg)
         end
       end
@@ -82,9 +84,10 @@ module AresMUSH
       end
     end
     
-    def self.pose_to_channel(channel, name, msg, title)
-      formatted_msg = PoseFormatter.format(name, msg)
-      Channels.emit_to_channel channel, formatted_msg, title
+    def self.pose_to_channel(channel, char, msg, title)
+      formatted_msg = PoseFormatter.format(char.ooc_name, msg)
+      data = { channel: channel, char: char, action: 'pose', msg: msg }
+      Channels.emit_to_channel data, channel, formatted_msg, title, data
       return formatted_msg
     end
     
@@ -93,7 +96,8 @@ module AresMUSH
     end
     
     def self.leave_channel(char, channel)
-      Channels.emit_to_channel channel, t('channels.left_channel', :name => char.name)
+      data = { channel: channel, char: char, action: 'leave', msg: '' }
+      Channels.emit_to_channel data, channel, t('channels.left_channel', :name => char.name)
       channel.characters.delete char
     end
     
