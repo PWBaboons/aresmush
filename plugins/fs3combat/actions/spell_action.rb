@@ -78,9 +78,10 @@ module AresMUSH
             if weapon_specials_str
               Custom.spell_weapon_effects(combatant, self.spell)
               weapon = combatant.weapon.before("+")
+              Global.logger.debug "Real saved spell thingy post-helper:  #{Combatant[self.combatant.id].spell_weapon_effects}"
 
               FS3Combat.set_weapon(combatant, target, weapon, [weapon_specials_str])
-
+              Global.logger.debug "Real saved spell thingy post-set_weapon:  #{Combatant[self.combatant.id].spell_weapon_effects}"
               if heal_points
 
               elsif lethal_mod || defense_mod || attack_mod || spell_mod
@@ -180,8 +181,10 @@ module AresMUSH
 
         end
         Global.logger.info "Combatant's final weapon effects: #{combatant.spell_weapon_effects}"
+        Global.logger.debug "Real saved spell thingy:  #{Combatant[self.combatant.id].spell_weapon_effects}"
+
         messages
-        
+
       end
     end
   end
