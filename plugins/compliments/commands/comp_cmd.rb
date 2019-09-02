@@ -1,5 +1,5 @@
 module AresMUSH
-  module Comps
+  module Compliments
     class CompGiveCmd
 
       #comp <name>=<text>
@@ -16,8 +16,8 @@ module AresMUSH
         self.targets = []
          self.target_names.each do |name|
           target = Character.named(name)
-          return t('comps.invalid_name') if !target
-          return t('comps.cant_comp_self') if target.name == enactor_name
+          return t('compliments.invalid_name') if !target
+          return t('compliments.cant_comp_self') if target.name == enactor_name
           self.targets << target
         end
        end
@@ -32,8 +32,8 @@ module AresMUSH
 
       def handle
         date = Time.now.strftime("%Y-%m-%d")
-        luck_amount = Global.read_config("comps", "luck_amount")
-        give_luck = Global.read_config("comps", "give_luck")
+        luck_amount = Global.read_config("compliments", "luck_amount")
+        give_luck = Global.read_config("compliments", "give_luck")
         if self.scene_id
           self.target_names = []
 
@@ -41,29 +41,28 @@ module AresMUSH
             if target == enactor
 
             else
-              CompsRecord.create(character: target, comp_msg: self.comp, from: enactor.name)
+              Comps.create(character: target, comp_msg: self.comp, from: enactor.name)
               if give_luck
                 FS3Skills.modify_luck(target, luck_amount)
               end
-              message = t('comps.has_left_comp', :from => enactor.name)
+              message = t('compliments.has_left_comp', :from => enactor.name)
               Login.emit_if_logged_in target, message
               self.target_names << target.name
             end
           end
-          client.emit_success t('comps.left_comp', :name =>  self.target_names.join(", "))
+          client.emit_success t('compliments.left_comp', :name =>  self.target_names.join(", "))
         else
           targets.each do |target|
-            Global.logger.debug "GIVE LUCK #{give_luck}"
-            CompsRecord.create(character: target, comp_msg: self.comp, from: enactor.name)
+            Comps.create(character: target, comp_msg: self.comp, from: enactor.name)
             if give_luck
               FS3Skills.modify_luck(target, luck_amount)
             end
-            message = t('comps.has_left_comp', :from => enactor.name)
+            message = t('compliments.has_left_comp', :from => enactor.name)
             Login.emit_if_logged_in target, message
           end
-          client.emit_success t('comps.left_comp', :name =>  self.target_names.join(", "))
+          client.emit_success t('compliments.left_comp', :name =>  self.target_names.join(", "))
         end
-        Comps.handle_comps_given_achievement(enactor)
+        Compliments.handle_comps_given_achievement(enactor)
       end
 
     end

@@ -1,13 +1,13 @@
 module AresMUSH
 
   class Character < Ohm::Model
-    collection :comps, "AresMUSH::CompsRecord"
+    collection :comps, "AresMUSH::Comps"
     attribute :comps_given, :type => DataType::Integer
   end
 end
 
 
-class CompsRecord < Ohm::Model
+class Comps < Ohm::Model
   include ObjectModel
 
   index :character

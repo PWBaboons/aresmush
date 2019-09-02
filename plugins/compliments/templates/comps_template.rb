@@ -1,5 +1,5 @@
 module AresMUSH
-  module Comps
+  module Compliments
     class CompsTemplate < ErbTemplateRenderer
       attr_accessor :char, :paginator
 
@@ -8,11 +8,6 @@ module AresMUSH
          @paginator = paginator
          super File.dirname(__FILE__) + "/comps.erb"
       end
-
-      # def initialize(char)
-      #   @char = char
-      #   super File.dirname(__FILE__) + "/comps.erb"
-      # end
 
       def comps_recieved
         @char.comps.to_a

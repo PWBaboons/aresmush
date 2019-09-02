@@ -1,5 +1,5 @@
 module AresMUSH
-  module Comps
+  module Compliments
     class CompsCmd
       include CommandHandler
       attr_accessor :target_name
