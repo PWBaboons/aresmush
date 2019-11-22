@@ -30,7 +30,10 @@ module AresMUSH
     end
 
     def self.get_web_request_handler(request)
-      nil
+      case request.cmd
+      when "comps"
+        return GetCompsRequestHandler
+      end
     end
 
   end
