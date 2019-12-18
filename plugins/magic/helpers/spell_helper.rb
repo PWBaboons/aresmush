@@ -47,20 +47,12 @@ module AresMUSH
       end
     end
 
-    #Can read armor or weapon
-    def self.is_magic_weapon(gear)
-      FS3Combat.weapon_stat(gear, "is_magic")
-    end
-
-    def self.is_magic_armor(gear)
-      FS3Combat.armor_stat(gear, "is_magic")
-    end
 
     def self.spell_success(spell, die_result)
       if die_result < 1
         return "%xrFAILS%xn"
       else
-        return "%xgSUCCEEDS%xn"  
+        return "%xgSUCCEEDS%xn"
       end
     end
 
