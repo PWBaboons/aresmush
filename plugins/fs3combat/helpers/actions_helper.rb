@@ -12,8 +12,6 @@ module AresMUSH
         "pass" => PassAction,
         "rally" => RallyAction,
         "reload" => ReloadAction,
-        "spell" => SpellAction,
-        "potion" => PotionAction,
         "treat" => TreatAction,
         "subdue" => SubdueAction,
         "suppress" => SuppressAction
@@ -64,7 +62,7 @@ module AresMUSH
       if (!combatant.is_subdued?)
         combatant.update(subdued_by: nil)
       end
-      
+
       combatant.update(luck: nil)
       combatant.update(posed: false)
       combatant.update(recoil: 0)
