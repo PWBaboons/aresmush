@@ -3,16 +3,7 @@ en:
   magic:
       invalid_name: "%xrCharacter not found.%xn"
       updated_weapon_specials: "You have updated %{target}'s persistent weapon specials to %{specials}."
-      # luck_requested: "You have requested luck. Check your requests for updates."
-      # plot_proposed: "You have proposed your plot. Check your requests for updates and responses."
-      # comps_title: "%{name}'S COMPS"
-      # left_comp: "You have left a comp for %{name}."
-      # has_left_comp: "%xc%{from} has left you a comp. Type `comps` to see it.%xn"
-      #   # ----------------------------
-      #   # SCHOOLS
-      #   # ----------------------------
-      # schools_title: "Schools"
-      # schools_blurb: "Schools reflect the type of spells a magic user is able to do. A magic user may have an affinity for a single School, or they may possess an affinity for two, one lesser and one greater. System-wise, Schools function in the same way as action skills."
+      magic_attribute_too_high: "%xh%xr< Magic attribute is too high. (%{max} max) >%xn"
         # ----------------------------
         # POTIONS
         # ----------------------------

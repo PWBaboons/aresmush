@@ -2,14 +2,9 @@ module AresMUSH
   module Chargen
     def self.custom_app_review(char)
 
-      magic = FS3Skills.ability_rating(char, "Magic")
-      if magic > 2
-        msg = "%xrYour Magic attribute cannot be higher than 2.%xn"
-      else
-        msg = t('chargen.ok')
-      end
+      Magic.check_magic_rating(char)
+      
 
-      return Chargen.format_review_status "Checking Magic.", msg
 
       # If you don't want to have any custom app review steps, return nil
       # return nil
@@ -31,6 +26,7 @@ module AresMUSH
       #
       # You can also use other built-in chargen status messages, like t('chargen.not_set').
       # See https://www.aresmush.com/tutorials/config/chargen.html for details.
+
     end
   end
 end

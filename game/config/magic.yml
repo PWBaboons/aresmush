@@ -1,5 +1,6 @@
 ---
 magic:
+  max_cg_magic_rating: 2
   shield_cron:
     hour:
     - 02

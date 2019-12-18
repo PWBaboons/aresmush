@@ -187,6 +187,7 @@ module AresMUSH
        hooks_app = MushFormatter.format Chargen.hook_app_review(char)
 
        custom_review = Chargen.custom_app_review(char)
+       puts "Custom: #{custom_review}"
        custom_app = custom_review ? MushFormatter.format(custom_review) : nil
 
        {
